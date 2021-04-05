@@ -20,17 +20,26 @@ export default function Home() {
         flexDir='column'
       >
         <Stack spacing='4'>
-          <Input name='email' label='E-mail' type='email' />
-
-          <Input name='password' label='Senha' type='password' />
-
+          <Input
+            name='email'
+            label='E-mail'
+            type='email'
+          />
+          <Input
+            name='password'
+            label='Senha'
+            type='password'
+          />
         </Stack>
-
-        <Button type="submit" mt='6' colorScheme="pink" size='lg' >Entrar</Button>
-
+        <Button
+          type="submit"
+          mt='6'
+          colorScheme="pink"
+          size='lg'
+        >
+          Entrar
+        </Button>
       </Flex>
-
     </Flex>
-
   )
 }
