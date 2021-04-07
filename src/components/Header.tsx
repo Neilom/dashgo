@@ -2,6 +2,10 @@ import { Flex, Text, Input, Icon, HStack, Box, Avatar } from '@chakra-ui/react'
 import { RiNotificationLine, RiSearchLine, RiUserAddLine } from 'react-icons/ri'
 
 export function Header() {
+
+  function click(){
+    alert('Diego bundão')
+  }
   return (
     <Flex
       as='header'
@@ -36,6 +40,7 @@ export function Header() {
         position='relative'
         bg='gray.800'
         borderRadius='full'
+        onClick={click}
       >
         <Input
           color="gray.50"
