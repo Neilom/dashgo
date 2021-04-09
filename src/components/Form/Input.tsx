@@ -13,7 +13,7 @@ export function Input({name,label, ...rest}:InputProps) {
         name={name}
         id={name}
         placeholder={label}
-        focusBorderColor="pink.500"
+        focusBorderColor="green.500"
         bgColor="gray.900"
         variant='filled'
         _hover={{
