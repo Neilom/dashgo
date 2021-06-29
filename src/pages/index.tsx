@@ -11,9 +11,11 @@ export default function Home() {
 
   const { register, handleSubmit, formState } = useForm()
 
+  console.log(formState.errors)
+
   const handleSignIn: SubmitHandler<SingInFormData> = async (values) => {
 
-    await new Promise ( resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 2000))
     console.log(values)
   }
 
@@ -39,13 +41,15 @@ export default function Home() {
             name='email'
             label='E-mail'
             type='email'
-            {...register("email")}
+            error={formState.errors}
+            {...register("email", {required: 'E-mail obrigatório'})}
           />
           <Input
             name='password'
             label='Senha'
             type='password'
-            {...register("password")}
+            error={formState.errors}
+            {...register("password", {required: 'Senha obrigatório'})}
           />
         </Stack>
         <Button
