@@ -1,11 +1,17 @@
-import { Text, Checkbox, Tbody, Td, Tr } from "@chakra-ui/react";
+import { Text, Checkbox, Tbody, Td, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { Box, Button, Icon, Flex, Heading, Table, Thead, Th } from "@chakra-ui/react";
+import Link from "next/link";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import Pagination from "../../components/Pagination";
 import { SideBar } from "../../components/SideBar";
 
 export default function UserList() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   return (
     <Box>
       <Header />
@@ -15,16 +21,18 @@ export default function UserList() {
         <Box flex='1' borderRadius={8} bg='gray.800' p='8'>
           <Flex mb='8' justify='space-between' align='center'>
             <Heading size='lg' fontWeight='normal'>Usuários</Heading>
-            <Button as='a' size='sm' fontSize='sm' colorScheme='green' leftIcon={<Icon as={RiAddLine} fontSize='16' />}>
-              Criar novo
+            <Link href="/users/create" passHref>
+              <Button as='a' size='sm' fontSize='sm' colorScheme='green' leftIcon={<Icon as={RiAddLine} fontSize='16' />}>
+                Criar novo
               </Button>
+            </Link>
           </Flex>
 
 
           <Table colorScheme='whiteAlpha'>
             <Thead>
               <Tr>
-                <Th px='6' color='gray.300' width='8'>
+                <Th px={['4', '4', '6']} color='gray.300' width='8'>
                   <Checkbox colorScheme="green" />
                 </Th>
                 <Th>Usuário</Th>
@@ -34,7 +42,7 @@ export default function UserList() {
             </Thead>
             <Tbody>
               <Tr>
-                <Td p='6'>
+                <Td p={['4', '4', '6']}>
                   <Checkbox colorScheme="green" />
                 </Td>
                 <Td>
@@ -43,12 +51,16 @@ export default function UserList() {
                     <Text fontSize='sm' color='gray.300'>leonardox.schmitt@gmail.com</Text>
                   </Box>
                 </Td>
-                <Td>
-                  04 de Abril, 2021
-                </Td>
+                {isWideVersion && <Td>04 de Abril, 2021</Td>}
                 <Td >
-                  <Button as='a' size='sm' fontSize='sm' colorScheme='green' leftIcon={<Icon as={RiPencilLine} fontSize='16' />} >
-                    Editar
+                  <Button
+                    as='a'
+                    size='sm'
+                    fontSize='sm'
+                    colorScheme='green'
+                    leftIcon={<Icon as={RiPencilLine} fontSize='16' />}
+                  >
+                    {isWideVersion ? "Editar" : ""}
                   </Button>
                 </Td>
 
@@ -56,7 +68,7 @@ export default function UserList() {
             </Tbody>
           </Table>
 
-          <Pagination/>
+          <Pagination />
         </Box>
       </Flex>
     </Box>
