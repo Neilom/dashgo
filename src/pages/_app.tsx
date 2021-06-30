@@ -4,17 +4,23 @@ import { theme } from '../styles/theme'
 import { SidebarDrawerProvider } from '../contexts/SideBarDrawerContext'
 import { makeServer } from '../services/mirage'
 
+import { QueryClientProvider, QueryClient } from 'react-query'
+
 if (process.env.NODE_ENV === 'development') {
   makeServer();
 }
 
+const queryCliente = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <SidebarDrawerProvider>
-        <Component {...pageProps} />
-      </SidebarDrawerProvider>
-    </ChakraProvider>
+    <QueryClientProvider client={queryCliente}>
+      <ChakraProvider theme={theme}>
+        <SidebarDrawerProvider>
+          <Component {...pageProps} />
+        </SidebarDrawerProvider>
+      </ChakraProvider>
+    </QueryClientProvider>
   )
 }
 
