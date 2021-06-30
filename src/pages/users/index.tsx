@@ -78,29 +78,29 @@ export default function UserList() {
                 {data.map(user => {
                   return (
                     <Tr key={user.id}>
-                    <Td p={['4', '4', '6']}>
-                      <Checkbox colorScheme="green" />
-                    </Td>
-                    <Td>
-                      <Box>
-                        <Text fontWeight='bold'>{user.name}</Text>
-                        <Text fontSize='sm' color='gray.300'>{user.email}</Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && <Td>{user.createdAt}</Td>}
-                    <Td >
-                      <Button
-                        as='a'
-                        size='sm'
-                        fontSize='sm'
-                        colorScheme='green'
-                        leftIcon={<Icon as={RiPencilLine} fontSize='16' />}
-                      >
-                        {isWideVersion ? "Editar" : ""}
-                      </Button>
-                    </Td>
+                      <Td p={['4', '4', '6']}>
+                        <Checkbox colorScheme="green" />
+                      </Td>
+                      <Td>
+                        <Box>
+                          <Text fontWeight='bold'>{user.name}</Text>
+                          <Text fontSize='sm' color='gray.300'>{user.email}</Text>
+                        </Box>
+                      </Td>
+                      {isWideVersion && <Td>{user.createdAt}</Td>}
+                      <Td >
+                        <Button
+                          as='a'
+                          size='sm'
+                          fontSize='sm'
+                          colorScheme='green'
+                          leftIcon={<Icon as={RiPencilLine} fontSize='16' />}
+                        >
+                          {isWideVersion ? "Editar" : ""}
+                        </Button>
+                      </Td>
 
-                  </Tr>
+                    </Tr>
                   )
                 })}
               </Tbody>
