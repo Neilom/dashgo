@@ -20,8 +20,6 @@ export default function Home() {
     resolver: yupResolver(signInFormSchema)
   })
 
-  console.log(formState.errors)
-
   const handleSignIn: SubmitHandler<SingInFormData> = async (values) => {
 
     await new Promise(resolve => setTimeout(resolve, 2000))
