@@ -1,5 +1,6 @@
 import { Box, Button, Checkbox, Flex, Heading, Icon, Spinner, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import Pagination from "../../components/Pagination";
@@ -8,8 +9,9 @@ import { useUsers } from "../../services/hooks/useUsers";
 
 
 export default function UserList() {
+  const [page, setPage] = useState(1)
 
-  const { data, isLoading, isFetching, error } = useUsers()
+  const { data, isLoading, isFetching, error } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -26,7 +28,7 @@ export default function UserList() {
           <Flex mb='8' justify='space-between' align='center'>
             <Heading size='lg' fontWeight='normal'>
               Usuários
-              {isFetching && !isLoading && <Spinner size='4' color='gray.500' ml='4' />}
+              {isFetching && !isLoading && <Spinner size='md' color='gray.500' ml='4' />}
             </Heading>
             <Link href="/users/create" passHref>
               <Button as='a' size='sm' fontSize='sm' colorScheme='green' leftIcon={<Icon as={RiAddLine} fontSize='16' />}>
@@ -54,7 +56,7 @@ export default function UserList() {
                 </Tr>
               </Thead>
               <Tbody>
-                {data.map(user => {
+                {data.users.map(user => {
                   return (
                     <Tr key={user.id}>
                       <Td p={['4', '4', '6']}>
@@ -85,7 +87,10 @@ export default function UserList() {
               </Tbody>
             </Table>
 
-            <Pagination />
+            <Pagination
+              totalCountOfRegisters={data.totalCount}
+              currentPage={page}
+              onPageChange={setPage} />
           </>
           )}
 
